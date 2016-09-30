@@ -17,4 +17,19 @@ public class Test extends TestCase {
     assertEquals("abc!", iteration.consume(Arrays.asList('a', 'b', 'c').iterator()));
   }
 
+  public void test2() {
+
+    Iteration<Character, String> iteration =
+      new MapFold<>(
+        new ZipFold<>(
+          new LengthFold<>(),
+          new CatFold()
+        ),
+        r -> r._2 + "(" + r._1.toString() + ")"
+      );
+
+    assertEquals("abc(3)", iteration.consume(Arrays.asList('a', 'b', 'c').iterator()));
+
+  }
+
 }
