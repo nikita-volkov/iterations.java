@@ -1,4 +1,4 @@
-package com.github.nikita_volkov.java.iterations.fold;
+package com.github.nikita_volkov.java.iterations;
 
 public final class ZipFold<input, accumulator1, accumulator2, output1, output2>
   implements Fold<input, ZipFold.Pair<accumulator1, accumulator2>, ZipFold.Pair<output1, output2>> {

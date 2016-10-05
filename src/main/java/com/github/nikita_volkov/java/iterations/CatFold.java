@@ -1,4 +1,4 @@
-package com.github.nikita_volkov.java.iterations.fold;
+package com.github.nikita_volkov.java.iterations;
 
 public final class CatFold implements Fold<Character, StringBuilder, String> {
 
