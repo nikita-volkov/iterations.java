@@ -2,13 +2,13 @@ package com.github.nikita_volkov.java.iterations;
 
 public final class TakeIteration<input, output> implements Iteration<input, output> {
 
-  private final Iteration<input, output> initialFold;
+  private final Iteration<input, output> initialIteration;
   private final long amount;
 
   private long state;
 
-  public TakeIteration(Iteration<input, output> initialFold, long amount) {
-    this.initialFold = initialFold;
+  public TakeIteration(Iteration<input, output> initialIteration, long amount) {
+    this.initialIteration = initialIteration;
     this.amount = amount;
   }
 
@@ -19,12 +19,12 @@ public final class TakeIteration<input, output> implements Iteration<input, outp
 
   @Override
   public boolean step(input input) {
-    return state-- > 0 && initialFold.step(input);
+    return state-- > 0 && initialIteration.step(input);
   }
 
   @Override
   public output output() {
-    return initialFold.output();
+    return initialIteration.output();
   }
 
 }

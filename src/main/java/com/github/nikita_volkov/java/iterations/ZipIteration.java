@@ -18,7 +18,9 @@ public final class ZipIteration<input, output1, output2> implements Iteration<in
 
   @Override
   public boolean step(input input) {
-    return iteration1.step(input) && iteration2.step(input);
+    boolean goOn1 = iteration1.step(input);
+    boolean goOn2 = iteration2.step(input);
+    return goOn1 && goOn2;
   }
 
   @Override

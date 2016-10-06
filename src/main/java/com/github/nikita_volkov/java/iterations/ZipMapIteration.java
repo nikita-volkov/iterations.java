@@ -22,7 +22,9 @@ public final class ZipMapIteration<input, output1, output2, output3> implements 
 
   @Override
   public boolean step(input input) {
-    return iteration1.step(input) && iteration2.step(input);
+    boolean goOn1 = iteration1.step(input);
+    boolean goOn2 = iteration2.step(input);
+    return goOn1 && goOn2;
   }
 
   @Override
