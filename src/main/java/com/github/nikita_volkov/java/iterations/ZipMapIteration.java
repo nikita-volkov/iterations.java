@@ -8,6 +8,9 @@ public final class ZipMapIteration<input, output1, output2, output3> implements 
   private final Iteration<input, output2> iteration2;
   private final BiFunction<output1, output2, output3> fn;
 
+  private boolean iteration1Active;
+  private boolean iteration2Active;
+
   public ZipMapIteration(Iteration<input, output1> iteration1, Iteration<input, output2> iteration2, BiFunction<output1, output2, output3> fn) {
     this.iteration1 = iteration1;
     this.iteration2 = iteration2;
@@ -18,13 +21,19 @@ public final class ZipMapIteration<input, output1, output2, output3> implements 
   public void init() {
     iteration1.init();
     iteration2.init();
+    iteration1Active = true;
+    iteration2Active = true;
   }
 
   @Override
   public boolean step(input input) {
-    boolean goOn1 = iteration1.step(input);
-    boolean goOn2 = iteration2.step(input);
-    return goOn1 && goOn2;
+    if (iteration1Active) {
+      iteration1Active = iteration1.step(input);
+    }
+    if (iteration2Active) {
+      iteration2Active = iteration2.step(input);
+    }
+    return iteration1Active || iteration2Active;
   }
 
   @Override
