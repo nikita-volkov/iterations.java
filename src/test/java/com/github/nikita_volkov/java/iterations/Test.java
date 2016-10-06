@@ -8,27 +8,28 @@ public class Test extends TestCase {
 
   public void test1() {
 
-    Iteration<Character, String> iteration =
+    Iteration<String, String> iteration =
       new MapIteration<>(
-        new CatFold(),
+        new CatIteration(),
         string -> string + "!"
       );
 
-    assertEquals("abc!", iteration.consume(Arrays.asList('a', 'b', 'c').iterator()));
+    assertEquals("abc!", iteration.consume(Arrays.asList("a", "b", "c").iterator()));
+
   }
 
   public void test2() {
 
-    Iteration<Character, String> iteration =
-      new MapFold<>(
-        new ZipFold<>(
-          new LengthFold<>(),
-          new CatFold()
+    Iteration<String, String> iteration =
+      new MapIteration<>(
+        new ZipIteration<>(
+          new LengthIteration<>(),
+          new CatIteration()
         ),
         r -> r._2 + "(" + r._1.toString() + ")"
       );
 
-    assertEquals("abc(3)", iteration.consume(Arrays.asList('a', 'b', 'c').iterator()));
+    assertEquals("abc(3)", iteration.consume(Arrays.asList("a", "b", "c").iterator()));
 
   }
 

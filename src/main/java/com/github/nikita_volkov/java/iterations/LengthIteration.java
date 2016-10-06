@@ -1,15 +1,21 @@
 package com.github.nikita_volkov.java.iterations;
 
-import java.util.Iterator;
-
 public final class LengthIteration<input> implements Iteration<input, Long> {
+  private Long state;
+
   @Override
-  public Long consume(Iterator<input> iterator) {
-    long length = 0;
-    while (iterator.hasNext()) {
-      length++;
-      iterator.next();
-    }
-    return length;
+  public void init() {
+    state = 0L;
+  }
+
+  @Override
+  public boolean step(input o) {
+    state++;
+    return true;
+  }
+
+  @Override
+  public Long output() {
+    return state;
   }
 }
