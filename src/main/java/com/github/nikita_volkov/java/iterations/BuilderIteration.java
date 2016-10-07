@@ -3,30 +3,38 @@ package com.github.nikita_volkov.java.iterations;
 /**
  * A helper for iterations utilising mutable builders.
  */
-public abstract class BuilderIteration<builder, input, output> implements Iteration<input, output> {
+public final class BuilderIteration<input, output> implements Iteration<input, output> {
 
-  private builder builder;
+  private final BuilderManager<Object, input, output> builderManager;
+
+  private Object builder;
+
+  public BuilderIteration(BuilderManager<Object, input, output> builderManager) {
+    this.builderManager = builderManager;
+  }
 
   @Override
   final public void init() {
-    builder = createBuilder();
+    builder = builderManager.createBuilder();
   }
 
   @Override
   final public boolean step(input input) {
-    addToBuilder(builder, input);
+    builderManager.addToBuilder(builder, input);
     return true;
   }
 
   @Override
   final public output output() {
-    output output = build(builder);
+    output output = builderManager.build(builder);
     builder = null;
     return output;
   }
 
-  protected abstract builder createBuilder();
-  protected abstract void addToBuilder(builder builder, input input);
-  protected abstract output build(builder builder);
+  public interface BuilderManager<builder, input, output> {
+    builder createBuilder();
+    void addToBuilder(builder builder, input input);
+    output build(builder builder);
+  }
 
 }
