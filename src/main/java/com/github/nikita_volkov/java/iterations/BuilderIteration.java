@@ -9,8 +9,8 @@ public final class BuilderIteration<input, output> implements Iteration<input, o
 
   private Object builder;
 
-  public BuilderIteration(BuilderManager<Object, input, output> builderManager) {
-    this.builderManager = builderManager;
+  public BuilderIteration(BuilderManager<?, input, output> builderManager) {
+    this.builderManager = (BuilderManager<Object, input, output>) builderManager;
   }
 
   @Override
