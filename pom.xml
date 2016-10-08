@@ -129,6 +129,11 @@
 
   <dependencies>
     <dependency>
+      <groupId>com.github.nikita-volkov.java</groupId>
+      <artifactId>composites</artifactId>
+      <version>0.1</version>
+    </dependency>
+    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.12</version>
