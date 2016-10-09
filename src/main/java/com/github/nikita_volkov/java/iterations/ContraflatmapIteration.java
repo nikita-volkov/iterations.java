@@ -19,12 +19,13 @@ public final class ContraflatmapIteration<input1, input2, output> implements Ite
 
   @Override
   public boolean step(input2 input2) {
-    boolean goOn = false;
     for (input1 input1 : fn.apply(input2)) {
-      boolean initialGoOn = initialIteration.step(input1);
-      goOn = goOn || initialGoOn;
+      boolean goOn = initialIteration.step(input1);
+      if (!goOn) {
+        return false;
+      }
     }
-    return goOn;
+    return true;
   }
 
   @Override

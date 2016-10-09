@@ -42,4 +42,13 @@ public class Test extends TestCase {
 
   }
 
+  public void testContraflatmapIteration() {
+
+    Iteration<Integer, String> iteration =
+      new ContraflatmapIteration<>(new CatIteration(), i -> i % 2 == 0 ? Arrays.asList(i.toString()) : Arrays.asList());
+
+    assertEquals("24", iteration.consume(Arrays.asList(1, 2, 3, 4, 5)));
+
+  }
+
 }
