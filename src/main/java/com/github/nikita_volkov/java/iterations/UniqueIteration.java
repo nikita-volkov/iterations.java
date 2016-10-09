@@ -17,7 +17,8 @@ public final class UniqueIteration<input, output> implements Iteration<input, ou
 
   @Override
   public void init() {
-    state = new HashSet<input>();
+    initialIteration.init();
+    state = new HashSet<>();
   }
 
   @Override

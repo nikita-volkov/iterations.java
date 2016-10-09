@@ -14,6 +14,7 @@ public final class TakeIteration<input, output> implements Iteration<input, outp
 
   @Override
   public void init() {
+    initialIteration.init();
     state = amount;
   }
 
