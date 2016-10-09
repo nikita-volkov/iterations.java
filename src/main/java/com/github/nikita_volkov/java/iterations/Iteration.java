@@ -16,4 +16,8 @@ public interface Iteration<input, output> {
     return output();
   }
 
+  default output consume(Iterable<input> iterable) {
+    return consume(iterable.iterator());
+  }
+
 }
