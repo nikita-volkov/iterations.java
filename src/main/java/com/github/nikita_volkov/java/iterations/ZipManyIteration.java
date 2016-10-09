@@ -1,5 +1,7 @@
 package com.github.nikita_volkov.java.iterations;
 
+import com.github.nikita_volkov.java.iterables.ArrayIterable;
+
 import java.util.LinkedList;
 
 public final class ZipManyIteration<input, output> implements Iteration<input, Iterable<output>> {
@@ -8,6 +10,10 @@ public final class ZipManyIteration<input, output> implements Iteration<input, I
 
   public ZipManyIteration(Iterable<Iteration<input, output>> iterations) {
     this.iterations = iterations;
+  }
+
+  public ZipManyIteration(Iteration<input, output>... iterations) {
+    this(new ArrayIterable<>(iterations));
   }
 
   @Override
