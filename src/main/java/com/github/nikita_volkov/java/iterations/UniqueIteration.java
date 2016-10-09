@@ -24,6 +24,7 @@ public final class UniqueIteration<input, output> implements Iteration<input, ou
   @Override
   public boolean step(input input) {
     if (!state.contains(input)) {
+      state.add(input);
       return initialIteration.step(input);
     }
     return true;

@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public class Test extends TestCase {
 
-  public void test1() {
+  public void testMapIteration() {
 
     Iteration<String, String> iteration =
       new MapIteration<>(
@@ -18,7 +18,7 @@ public class Test extends TestCase {
 
   }
 
-  public void test2() {
+  public void testZipIteration() {
 
     Iteration<String, String> iteration =
       new MapIteration<>(
@@ -30,6 +30,15 @@ public class Test extends TestCase {
       );
 
     assertEquals("abc(3)", iteration.consume(Arrays.asList("a", "b", "c").iterator()));
+
+  }
+
+  public void testUniqueIteration() {
+
+    Iteration<String, String> iteration =
+      new UniqueIteration<>(new CatIteration());
+
+    assertEquals("abc", iteration.consume(Arrays.asList("a", "b", "b", "c").iterator()));
 
   }
 
