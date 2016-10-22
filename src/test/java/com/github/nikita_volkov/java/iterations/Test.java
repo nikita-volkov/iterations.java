@@ -1,5 +1,6 @@
 package com.github.nikita_volkov.java.iterations;
 
+import com.github.nikita_volkov.java.composites.*;
 import junit.framework.TestCase;
 
 import java.util.Arrays;
@@ -48,6 +49,18 @@ public class Test extends TestCase {
       new ContraflatmapIteration<>(new CatIteration(), i -> i % 2 == 0 ? Arrays.asList(i.toString()) : Arrays.asList());
 
     assertEquals("24", iteration.consume(Arrays.asList(1, 2, 3, 4, 5)));
+
+  }
+
+  public void testZipBranchesTermination() {
+
+    Iteration<Integer, Product2<Long, Long>> iteration =
+      new ZipIteration<>(
+        new TakeIteration<>(new LengthIteration<>(), 3),
+        new LengthIteration<>()
+      );
+
+    assertEquals(new Product2<>(3L, 5L), iteration.consume(Arrays.asList(1, 2, 3, 4, 5)));
 
   }
 
