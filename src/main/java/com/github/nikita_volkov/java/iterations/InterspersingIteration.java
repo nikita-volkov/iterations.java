@@ -1,13 +1,13 @@
 package com.github.nikita_volkov.java.iterations;
 
-public final class IntersperseIteration<input, output> implements Iteration<input, output> {
+public final class InterspersingIteration<input, output> implements Iteration<input, output> {
 
   private final Iteration<input, output> initialIteration;
   private final input separator;
 
   private boolean first;
 
-  public IntersperseIteration(Iteration<input, output> initialIteration, input separator) {
+  public InterspersingIteration(Iteration<input, output> initialIteration, input separator) {
     this.initialIteration = initialIteration;
     this.separator = separator;
   }

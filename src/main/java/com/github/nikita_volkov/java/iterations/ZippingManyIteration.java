@@ -4,15 +4,15 @@ import com.github.nikita_volkov.java.iterables.ArrayIterable;
 
 import java.util.LinkedList;
 
-public final class ZipManyIteration<input, output> implements Iteration<input, Iterable<output>> {
+public final class ZippingManyIteration<input, output> implements Iteration<input, Iterable<output>> {
 
   private final Iterable<Iteration<input, output>> iterations;
 
-  public ZipManyIteration(Iterable<Iteration<input, output>> iterations) {
+  public ZippingManyIteration(Iterable<Iteration<input, output>> iterations) {
     this.iterations = iterations;
   }
 
-  public ZipManyIteration(Iteration<input, output>... iterations) {
+  public ZippingManyIteration(Iteration<input, output>... iterations) {
     this(new ArrayIterable<>(iterations));
   }
 

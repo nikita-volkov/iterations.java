@@ -10,7 +10,7 @@ public class Test extends TestCase {
   public void testMapIteration() {
 
     Iteration<String, String> iteration =
-      new MapIteration<>(
+      new MappingIteration<>(
         new CatIteration(),
         string -> string + "!"
       );
@@ -22,8 +22,8 @@ public class Test extends TestCase {
   public void testZipIteration() {
 
     Iteration<String, String> iteration =
-      new MapIteration<>(
-        new ZipIteration<>(
+      new MappingIteration<>(
+        new ZippingIteration<>(
           new LengthIteration<>(),
           new CatIteration()
         ),
@@ -37,7 +37,7 @@ public class Test extends TestCase {
   public void testUniqueIteration() {
 
     Iteration<String, String> iteration =
-      new UniqueIteration<>(new CatIteration());
+      new UniquifyingIteration<>(new CatIteration());
 
     assertEquals("abc", iteration.consume(Arrays.asList("a", "b", "b", "c").iterator()));
 
@@ -46,7 +46,7 @@ public class Test extends TestCase {
   public void testContraflatmapIteration() {
 
     Iteration<Integer, String> iteration =
-      new ContraflatmapIteration<>(new CatIteration(), i -> i % 2 == 0 ? Arrays.asList(i.toString()) : Arrays.asList());
+      new ContraflatmappingIteration<>(new CatIteration(), i -> i % 2 == 0 ? Arrays.asList(i.toString()) : Arrays.asList());
 
     assertEquals("24", iteration.consume(Arrays.asList(1, 2, 3, 4, 5)));
 
@@ -55,8 +55,8 @@ public class Test extends TestCase {
   public void testZipBranchesTermination() {
 
     Iteration<Integer, Product2<Long, Long>> iteration =
-      new ZipIteration<>(
-        new TakeIteration<>(new LengthIteration<>(), 3),
+      new ZippingIteration<>(
+        new TakingIteration<>(new LengthIteration<>(), 3),
         new LengthIteration<>()
       );
 

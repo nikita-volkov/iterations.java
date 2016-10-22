@@ -1,13 +1,13 @@
 package com.github.nikita_volkov.java.iterations;
 
-public final class DropIteration<input, output> implements Iteration<input, output> {
+public final class TakingIteration<input, output> implements Iteration<input, output> {
 
   private final Iteration<input, output> initialIteration;
   private final long amount;
 
   private long state;
 
-  public DropIteration(Iteration<input, output> initialIteration, long amount) {
+  public TakingIteration(Iteration<input, output> initialIteration, long amount) {
     this.initialIteration = initialIteration;
     this.amount = amount;
   }
@@ -20,11 +20,7 @@ public final class DropIteration<input, output> implements Iteration<input, outp
 
   @Override
   public boolean step(input input) {
-    if (state <= 0) {
-      state--;
-      return initialIteration.step(input);
-    }
-    return true;
+    return state-- > 0 && initialIteration.step(input);
   }
 
   @Override

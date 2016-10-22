@@ -1,30 +1,27 @@
 package com.github.nikita_volkov.java.iterations;
 
-import java.util.*;
-
-/**
- * Modifies an existing iteration to operate only on unique input values.
- */
-public final class UniqueIteration<input, output> implements Iteration<input, output> {
+public final class DroppingIteration<input, output> implements Iteration<input, output> {
 
   private final Iteration<input, output> initialIteration;
+  private final long amount;
 
-  private Set<input> state;
+  private long state;
 
-  public UniqueIteration(Iteration<input, output> initialIteration) {
+  public DroppingIteration(Iteration<input, output> initialIteration, long amount) {
     this.initialIteration = initialIteration;
+    this.amount = amount;
   }
 
   @Override
   public void init() {
     initialIteration.init();
-    state = new HashSet<>();
+    state = amount;
   }
 
   @Override
   public boolean step(input input) {
-    if (!state.contains(input)) {
-      state.add(input);
+    if (state <= 0) {
+      state--;
       return initialIteration.step(input);
     }
     return true;
@@ -32,7 +29,6 @@ public final class UniqueIteration<input, output> implements Iteration<input, ou
 
   @Override
   public output output() {
-    state = null;
     return initialIteration.output();
   }
 

@@ -2,12 +2,12 @@ package com.github.nikita_volkov.java.iterations;
 
 import java.util.function.Function;
 
-public final class ContramapIteration<input1, input2, output> implements Iteration<input2, output> {
+public final class ContramappingIteration<input1, input2, output> implements Iteration<input2, output> {
 
   private final Iteration<input1, output> initialIteration;
   private final Function<input2, input1> fn;
 
-  public ContramapIteration(Iteration<input1, output> initialIteration, Function<input2, input1> fn) {
+  public ContramappingIteration(Iteration<input1, output> initialIteration, Function<input2, input1> fn) {
     this.initialIteration = initialIteration;
     this.fn = fn;
   }

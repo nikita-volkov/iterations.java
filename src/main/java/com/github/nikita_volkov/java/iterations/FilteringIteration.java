@@ -2,12 +2,12 @@ package com.github.nikita_volkov.java.iterations;
 
 import java.util.function.Predicate;
 
-public final class FilterIteration<input, output> implements Iteration<input, output> {
+public final class FilteringIteration<input, output> implements Iteration<input, output> {
 
   private final Iteration<input, output> initialIteration;
   private final Predicate<input> predicate;
 
-  public FilterIteration(Iteration<input, output> initialIteration, Predicate<input> predicate) {
+  public FilteringIteration(Iteration<input, output> initialIteration, Predicate<input> predicate) {
     this.initialIteration = initialIteration;
     this.predicate = predicate;
   }

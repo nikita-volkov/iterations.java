@@ -1,20 +1,18 @@
 package com.github.nikita_volkov.java.iterations;
 
-import java.util.function.BiFunction;
+import com.github.nikita_volkov.java.composites.Product2;
 
-public final class ZipMapIteration<input, output1, output2, output3> implements Iteration<input, output3> {
+public final class ZippingIteration<input, output1, output2> implements Iteration<input, Product2<output1, output2>> {
 
   private final Iteration<input, output1> iteration1;
   private final Iteration<input, output2> iteration2;
-  private final BiFunction<output1, output2, output3> fn;
 
   private boolean iteration1Active;
   private boolean iteration2Active;
 
-  public ZipMapIteration(Iteration<input, output1> iteration1, Iteration<input, output2> iteration2, BiFunction<output1, output2, output3> fn) {
+  public ZippingIteration(Iteration<input, output1> iteration1, Iteration<input, output2> iteration2) {
     this.iteration1 = iteration1;
     this.iteration2 = iteration2;
-    this.fn = fn;
   }
 
   @Override
@@ -37,8 +35,8 @@ public final class ZipMapIteration<input, output1, output2, output3> implements 
   }
 
   @Override
-  public output3 output() {
-    return fn.apply(iteration1.output(), iteration2.output());
+  public Product2<output1, output2> output() {
+    return new Product2<>(iteration1.output(), iteration2.output());
   }
 
 }
