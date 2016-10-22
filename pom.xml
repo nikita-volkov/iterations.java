@@ -6,7 +6,7 @@
 
   <groupId>com.github.nikita-volkov.java</groupId>
   <artifactId>iterations</artifactId>
-  <version>0.4.6-SNAPSHOT</version>
+  <version>0.5-SNAPSHOT</version>
 
   <name>iterations</name>
   <description>Composable iterations for Java</description>
