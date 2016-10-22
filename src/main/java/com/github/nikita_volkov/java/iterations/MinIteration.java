@@ -4,12 +4,7 @@ import java.util.Optional;
 
 public final class MinIteration<input extends Comparable<input>> implements Iteration<input, Optional<input>> {
 
-  private Optional<input> state;
-
-  @Override
-  public void init() {
-    state = Optional.empty();
-  }
+  private Optional<input> state = Optional.empty();
 
   @Override
   public boolean step(input input) {
@@ -21,9 +16,7 @@ public final class MinIteration<input extends Comparable<input>> implements Iter
 
   @Override
   public Optional<input> output() {
-    Optional<input> output = state;
-    state = null;
-    return output;
+    return state;
   }
 
 }

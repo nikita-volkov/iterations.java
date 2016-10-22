@@ -4,26 +4,19 @@ import java.util.Optional;
 
 public final class MaxIteration<input extends Comparable<input>> implements Iteration<input, Optional<input>> {
 
-  private Optional<input> state;
-
-  @Override
-  public void init() {
-    state = Optional.empty();
-  }
+  private input state;
 
   @Override
   public boolean step(input input) {
-    if (!state.isPresent() || input.compareTo(state.get()) >= 0) {
-      state = Optional.of(input);
+    if (state == null || input.compareTo(state) >= 0) {
+      state = input;
     }
     return true;
   }
 
   @Override
   public Optional<input> output() {
-    Optional<input> output = state;
-    state = null;
-    return output;
+    return Optional.ofNullable(state);
   }
 
 }

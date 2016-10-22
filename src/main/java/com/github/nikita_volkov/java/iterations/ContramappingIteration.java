@@ -13,11 +13,6 @@ public final class ContramappingIteration<input1, input2, output> implements Ite
   }
 
   @Override
-  public void init() {
-    initialIteration.init();
-  }
-
-  @Override
   public boolean step(input2 input2) {
     return initialIteration.step(fn.apply(input2));
   }

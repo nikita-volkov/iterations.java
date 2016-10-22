@@ -17,13 +17,6 @@ public final class ZippingManyIteration<input, output> implements Iteration<inpu
   }
 
   @Override
-  public void init() {
-    for (Iteration<input, output> iteration : iterations) {
-      iteration.init();
-    }
-  }
-
-  @Override
   public boolean step(input input) {
     boolean result = false;
     for (Iteration<input, output> iteration : iterations) {

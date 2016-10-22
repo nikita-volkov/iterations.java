@@ -11,11 +11,6 @@ public final class ChainingIteration<a, b, c> implements Iteration<a, c> {
   }
 
   @Override
-  public void init() {
-    iteration1.init();
-  }
-
-  @Override
   public boolean step(a a) {
     return iteration1.step(a);
   }

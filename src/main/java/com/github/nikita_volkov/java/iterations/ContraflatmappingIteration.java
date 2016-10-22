@@ -13,11 +13,6 @@ public final class ContraflatmappingIteration<input1, input2, output> implements
   }
 
   @Override
-  public void init() {
-    initialIteration.init();
-  }
-
-  @Override
   public boolean step(input2 input2) {
     for (input1 input1 : fn.apply(input2)) {
       boolean goOn = initialIteration.step(input1);

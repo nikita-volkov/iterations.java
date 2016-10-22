@@ -13,11 +13,6 @@ public final class MappingIteration<input, output1, output2> implements Iteratio
   }
 
   @Override
-  public void init() {
-    initialIteration.init();
-  }
-
-  @Override
   public boolean step(input input) {
     return initialIteration.step(input);
   }

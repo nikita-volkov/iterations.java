@@ -13,11 +13,6 @@ public final class UniquifyingIteration<input, output> implements Iteration<inpu
 
   public UniquifyingIteration(Iteration<input, output> initialIteration) {
     this.initialIteration = initialIteration;
-  }
-
-  @Override
-  public void init() {
-    initialIteration.init();
     state = new HashSet<>();
   }
 
@@ -32,7 +27,6 @@ public final class UniquifyingIteration<input, output> implements Iteration<inpu
 
   @Override
   public output output() {
-    state = null;
     return initialIteration.output();
   }
 

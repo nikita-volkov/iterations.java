@@ -15,12 +15,6 @@ public final class ZipmappingIteration<input, output1, output2, output3> impleme
     this.iteration1 = iteration1;
     this.iteration2 = iteration2;
     this.fn = fn;
-  }
-
-  @Override
-  public void init() {
-    iteration1.init();
-    iteration2.init();
     iteration1Active = true;
     iteration2Active = true;
   }

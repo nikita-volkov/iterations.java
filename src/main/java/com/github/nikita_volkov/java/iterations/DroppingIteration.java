@@ -3,19 +3,11 @@ package com.github.nikita_volkov.java.iterations;
 public final class DroppingIteration<input, output> implements Iteration<input, output> {
 
   private final Iteration<input, output> initialIteration;
-  private final long amount;
-
   private long state;
 
   public DroppingIteration(Iteration<input, output> initialIteration, long amount) {
     this.initialIteration = initialIteration;
-    this.amount = amount;
-  }
-
-  @Override
-  public void init() {
-    initialIteration.init();
-    state = amount;
+    this.state = amount;
   }
 
   @Override

@@ -13,11 +13,6 @@ public final class FilteringIteration<input, output> implements Iteration<input,
   }
 
   @Override
-  public void init() {
-    initialIteration.init();
-  }
-
-  @Override
   public boolean step(input input) {
     if (predicate.test(input)) {
       return initialIteration.step(input);

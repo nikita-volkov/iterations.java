@@ -2,12 +2,7 @@ package com.github.nikita_volkov.java.iterations;
 
 public final class CatIteration implements Iteration<String, String> {
 
-  private StringBuilder state;
-
-  @Override
-  public void init() {
-    state = new StringBuilder();
-  }
+  private final StringBuilder state = new StringBuilder();
 
   @Override
   public boolean step(String string) {
@@ -17,9 +12,7 @@ public final class CatIteration implements Iteration<String, String> {
 
   @Override
   public String output() {
-    String result = state.toString();
-    state = null;
-    return result;
+    return state.toString();
   }
 
 }

@@ -13,12 +13,6 @@ public final class ParIteration<input1, input2, output1, output2> implements Ite
   public ParIteration(Iteration<input1, output1> iteration1, Iteration<input2, output2> iteration2) {
     this.iteration1 = iteration1;
     this.iteration2 = iteration2;
-  }
-
-  @Override
-  public void init() {
-    iteration1.init();
-    iteration2.init();
     iteration1Active = true;
     iteration2Active = true;
   }

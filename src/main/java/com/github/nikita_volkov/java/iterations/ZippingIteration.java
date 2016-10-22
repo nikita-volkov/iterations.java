@@ -13,12 +13,6 @@ public final class ZippingIteration<input, output1, output2> implements Iteratio
   public ZippingIteration(Iteration<input, output1> iteration1, Iteration<input, output2> iteration2) {
     this.iteration1 = iteration1;
     this.iteration2 = iteration2;
-  }
-
-  @Override
-  public void init() {
-    iteration1.init();
-    iteration2.init();
     iteration1Active = true;
     iteration2Active = true;
   }

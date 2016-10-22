@@ -2,16 +2,11 @@ package com.github.nikita_volkov.java.iterations;
 
 import com.github.nikita_volkov.java.composites.Product2;
 
-import java.util.*;
+import java.util.HashMap;
 
 public final class HashMapIteration<key, value> implements Iteration<Product2<key, value>, HashMap<key, value>> {
 
-  private HashMap<key, value> state;
-
-  @Override
-  public void init() {
-    state = new HashMap<>();
-  }
+  private HashMap<key, value> state = new HashMap<>();
 
   @Override
   public boolean step(Product2<key, value> input) {
@@ -21,9 +16,7 @@ public final class HashMapIteration<key, value> implements Iteration<Product2<ke
 
   @Override
   public HashMap<key, value> output() {
-    HashMap<key, value> output = state;
-    state = null;
-    return output;
+    return state;
   }
 
 }

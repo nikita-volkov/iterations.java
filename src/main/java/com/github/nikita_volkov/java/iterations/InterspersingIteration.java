@@ -5,17 +5,11 @@ public final class InterspersingIteration<input, output> implements Iteration<in
   private final Iteration<input, output> initialIteration;
   private final input separator;
 
-  private boolean first;
+  private boolean first = true;
 
   public InterspersingIteration(Iteration<input, output> initialIteration, input separator) {
     this.initialIteration = initialIteration;
     this.separator = separator;
-  }
-
-  @Override
-  public void init() {
-    initialIteration.init();
-    first = true;
   }
 
   @Override

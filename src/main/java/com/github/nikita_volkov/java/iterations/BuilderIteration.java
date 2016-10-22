@@ -7,15 +7,11 @@ public final class BuilderIteration<input, output> implements Iteration<input, o
 
   private final BuilderManager<Object, input, output> builderManager;
 
-  private Object builder;
+  private final Object builder;
 
   public BuilderIteration(BuilderManager<?, input, output> builderManager) {
     this.builderManager = (BuilderManager<Object, input, output>) builderManager;
-  }
-
-  @Override
-  final public void init() {
-    builder = builderManager.createBuilder();
+    this.builder = builderManager.createBuilder();
   }
 
   @Override
@@ -26,9 +22,7 @@ public final class BuilderIteration<input, output> implements Iteration<input, o
 
   @Override
   final public output output() {
-    output output = builderManager.build(builder);
-    builder = null;
-    return output;
+    return builderManager.build(builder);
   }
 
   public interface BuilderManager<builder, input, output> {

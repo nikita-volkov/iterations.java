@@ -4,12 +4,7 @@ import java.util.LinkedList;
 
 public final class LinkedListIteration<input> implements Iteration<input, LinkedList<input>> {
 
-  private LinkedList<input> state;
-
-  @Override
-  public void init() {
-    state = new LinkedList<input>();
-  }
+  private LinkedList<input> state = new LinkedList<>();
 
   @Override
   public boolean step(input input) {
@@ -19,9 +14,7 @@ public final class LinkedListIteration<input> implements Iteration<input, Linked
 
   @Override
   public LinkedList<input> output() {
-    LinkedList<input> output = state;
-    state = null;
-    return output;
+    return state;
   }
 
 }
