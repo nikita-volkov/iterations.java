@@ -1,6 +1,6 @@
 package com.github.nikita_volkov.java.iterations;
 
-public final class CatIteration implements Iteration<String, String> {
+public final class StringCatIteration implements Iteration<String, String> {
 
   private final StringBuilder state = new StringBuilder();
 

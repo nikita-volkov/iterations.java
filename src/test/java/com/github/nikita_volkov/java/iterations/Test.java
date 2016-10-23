@@ -11,7 +11,7 @@ public class Test extends TestCase {
 
     Iteration<String, String> iteration =
       new MappingIteration<>(
-        new CatIteration(),
+        new StringCatIteration(),
         string -> string + "!"
       );
 
@@ -25,7 +25,7 @@ public class Test extends TestCase {
       new MappingIteration<>(
         new ZippingIteration<>(
           new LengthIteration<>(),
-          new CatIteration()
+          new StringCatIteration()
         ),
         r -> r._2 + "(" + r._1.toString() + ")"
       );
@@ -37,7 +37,7 @@ public class Test extends TestCase {
   public void testUniqueIteration() {
 
     Iteration<String, String> iteration =
-      new UniquifyingIteration<>(new CatIteration());
+      new UniquifyingIteration<>(new StringCatIteration());
 
     assertEquals("abc", iteration.consume(Arrays.asList("a", "b", "b", "c").iterator()));
 
@@ -46,7 +46,7 @@ public class Test extends TestCase {
   public void testContraflatmapIteration() {
 
     Iteration<Integer, String> iteration =
-      new ContraflatmappingIteration<>(new CatIteration(), i -> i % 2 == 0 ? Arrays.asList(i.toString()) : Arrays.asList());
+      new ContraflatmappingIteration<>(new StringCatIteration(), i -> i % 2 == 0 ? Arrays.asList(i.toString()) : Arrays.asList());
 
     assertEquals("24", iteration.consume(Arrays.asList(1, 2, 3, 4, 5)));
 
