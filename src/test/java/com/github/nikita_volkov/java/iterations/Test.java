@@ -1,6 +1,7 @@
 package com.github.nikita_volkov.java.iterations;
 
-import com.github.nikita_volkov.java.composites.*;
+import com.github.nikita_volkov.java.composites.Product2;
+import com.github.nikita_volkov.java.iterations.executor.IterableIterationExecutor;
 import junit.framework.TestCase;
 
 import java.util.Arrays;
@@ -15,7 +16,7 @@ public class Test extends TestCase {
         string -> string + "!"
       );
 
-    assertEquals("abc!", iteration.consume(Arrays.asList("a", "b", "c").iterator()));
+    assertEquals("abc!", new IterableIterationExecutor<>(Arrays.asList("a", "b", "c")).execute(iteration));
 
   }
 
@@ -30,7 +31,7 @@ public class Test extends TestCase {
         r -> r._2 + "(" + r._1.toString() + ")"
       );
 
-    assertEquals("abc(3)", iteration.consume(Arrays.asList("a", "b", "c").iterator()));
+    assertEquals("abc(3)", new IterableIterationExecutor<>(Arrays.asList("a", "b", "c")).execute(iteration));
 
   }
 
@@ -39,7 +40,7 @@ public class Test extends TestCase {
     Iteration<String, String> iteration =
       new UniquifyingIteration<>(new StringCatIteration());
 
-    assertEquals("abc", iteration.consume(Arrays.asList("a", "b", "b", "c").iterator()));
+    assertEquals("abc", new IterableIterationExecutor<>(Arrays.asList("a", "b", "b", "c")).execute(iteration));
 
   }
 
@@ -48,7 +49,7 @@ public class Test extends TestCase {
     Iteration<Integer, String> iteration =
       new ContraflatmappingIteration<>(new StringCatIteration(), i -> i % 2 == 0 ? Arrays.asList(i.toString()) : Arrays.asList());
 
-    assertEquals("24", iteration.consume(Arrays.asList(1, 2, 3, 4, 5)));
+    assertEquals("24", new IterableIterationExecutor<>(Arrays.asList(1, 2, 3, 4, 5)).execute(iteration));
 
   }
 
@@ -60,7 +61,7 @@ public class Test extends TestCase {
         new LengthIteration<>()
       );
 
-    assertEquals(new Product2<>(3L, 5L), iteration.consume(Arrays.asList(1, 2, 3, 4, 5)));
+    assertEquals(new Product2<>(3L, 5L), new IterableIterationExecutor<>(Arrays.asList(1, 2, 3, 4, 5)).execute(iteration));
 
   }
 

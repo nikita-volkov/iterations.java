@@ -1,5 +1,7 @@
 package com.github.nikita_volkov.java.iterations;
 
+import com.github.nikita_volkov.java.iterations.executor.*;
+
 public final class ChainingIteration<a, b, c> implements Iteration<a, c> {
 
   private final Iteration<a, Iterable<b>> iteration1;
@@ -17,6 +19,6 @@ public final class ChainingIteration<a, b, c> implements Iteration<a, c> {
 
   @Override
   public c output() {
-    return iteration2.consume(iteration1.output());
+    return new IterableIterationExecutor<>(iteration1.output()).execute(iteration2);
   }
 }
