@@ -12,11 +12,7 @@ public final class DroppingIteration<input, output> implements Iteration<input, 
 
   @Override
   public boolean step(input input) {
-    if (state <= 0) {
-      state--;
-      return initialIteration.step(input);
-    }
-    return true;
+    return state-- > 0 || initialIteration.step(input);
   }
 
   @Override

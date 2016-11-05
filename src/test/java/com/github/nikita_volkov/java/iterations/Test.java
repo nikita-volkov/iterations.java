@@ -1,7 +1,7 @@
 package com.github.nikita_volkov.java.iterations;
 
 import com.github.nikita_volkov.java.composites.Product2;
-import com.github.nikita_volkov.java.iterations.executor.IterableIterationExecutor;
+import com.github.nikita_volkov.java.iterations.executor.*;
 import junit.framework.TestCase;
 
 import java.util.Arrays;
@@ -62,6 +62,24 @@ public class Test extends TestCase {
       );
 
     assertEquals(new Product2<>(3L, 5L), new IterableIterationExecutor<>(Arrays.asList(1, 2, 3, 4, 5)).execute(iteration));
+
+  }
+
+  public void testTakingIteration() {
+
+    Iteration<Character, String> iteration =
+      new TakingIteration<>(new CharacterCatIteration(), 2);
+
+    assertEquals("ab", new ArrayIterationExecutor<>('a', 'b', 'c', 'd').execute(iteration));
+
+  }
+
+  public void testDroppingIteration() {
+
+    Iteration<Character, String> iteration =
+      new DroppingIteration<>(new CharacterCatIteration(), 2);
+
+    assertEquals("cd", new ArrayIterationExecutor<>('a', 'b', 'c', 'd').execute(iteration));
 
   }
 
