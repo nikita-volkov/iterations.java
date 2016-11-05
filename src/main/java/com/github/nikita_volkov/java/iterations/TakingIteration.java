@@ -4,16 +4,21 @@ public final class TakingIteration<input, output> implements Iteration<input, ou
 
   private final Iteration<input, output> initialIteration;
 
-  private long state;
+  private long stepsLeft;
 
   public TakingIteration(Iteration<input, output> initialIteration, long amount) {
     this.initialIteration = initialIteration;
-    this.state = amount;
+    this.stepsLeft = amount;
   }
 
   @Override
   public boolean step(input input) {
-    return state-- > 0 && initialIteration.step(input);
+    if (stepsLeft > 0) {
+      stepsLeft--;
+      return initialIteration.step(input) && stepsLeft > 0;
+    } else {
+      return false;
+    }
   }
 
   @Override
