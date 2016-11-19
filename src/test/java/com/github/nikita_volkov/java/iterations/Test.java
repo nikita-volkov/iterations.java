@@ -83,4 +83,13 @@ public class Test extends TestCase {
 
   }
 
+  public void testZipMany() {
+
+    Iteration<Long, Iterable<Long>> iteration =
+      new ZippingManyIteration<>(new LongSumIteration(), new LengthIteration<>());
+
+    assertEquals(6L, new IterableIterationExecutor<>(new ArrayIterationExecutor<>(1L, 1L, 1L).execute(iteration)).execute(new LongSumIteration()).longValue());
+
+  }
+
 }
